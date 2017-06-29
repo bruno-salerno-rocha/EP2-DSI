@@ -15,8 +15,9 @@ public class EP2DSI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello, Haddop!");
-        Leitor.teste();
+        UI ui = new UI();
+        ui.run();
+                
     }
     
 }
