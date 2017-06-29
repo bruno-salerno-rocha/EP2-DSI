@@ -9,14 +9,8 @@ package ep2.dsi;
  *
  * @author bruno
  */
-public class EP2DSI {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        System.out.println("Hello, Haddop!");
-        Leitor.teste();
+public class Leitor {
+    static void teste(){
+        System.out.println("Teste");
     }
-    
 }
