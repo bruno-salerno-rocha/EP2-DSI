@@ -10,11 +10,11 @@ package ep2.dsi;
  * @author bruno
  */
 public class EP2DSI {
-
-    /**
-     * @param args the command line arguments
-     */
+    
+    static String dirDados="";
+    
     public static void main(String[] args) {
+        dirDados=args[0];
         UI ui = new UI();
         ui.run();
                 
