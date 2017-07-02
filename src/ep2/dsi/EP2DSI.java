@@ -43,16 +43,19 @@ public class EP2DSI {
     //Reducer 
      
     //Vai receber um conjunto de dados com a chave em comum (ex: todos os todos de VISIB do ano de 1984) 
-    public static class IntSumReducer
+    //Esta calculando a media 
+    public static class IntMeanReducer
        extends Reducer<Text,IntWritable,Text,IntWritable> {
     private IntWritable result = new IntWritable();
 
     public void reduce(Text key, Iterable<IntWritable> values, Context context) throws IOException, InterruptedException {
-      int sum = 0;
+      int med = 0, cont = 0;
       for (IntWritable val : values) {
-        sum += val.get();
+        med += val.get();
+        cont++;
       }
-      result.set(sum);
+      med/=cont;
+      result.set(med);
       //Devolve um resultado para o conjunto de entrada
       context.write(key, result);
     }
@@ -69,8 +72,8 @@ public class EP2DSI {
         Job job = Job.getInstance(conf, "EP2");
         job.setJarByClass(EP2DSI.class);
         job.setMapperClass(TokenizerMapper.class);
-        job.setCombinerClass(IntSumReducer.class);
-        job.setReducerClass(IntSumReducer.class);
+        job.setCombinerClass(IntMeanReducer.class);
+        job.setReducerClass(IntMeanReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
         FileInputFormat.addInputPath(job, new Path(args[0]));
